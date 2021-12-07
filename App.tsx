@@ -1,14 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import 'react-native-gesture-handler';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import { AppNavigator } from './src/navigation/AppNavigator';
 
 const App = () => {
   return (
-    <View>
-      <Text>Hello World !</Text>
-    </View>
+    <SafeAreaProvider>
+      <AppNavigator />
+    </SafeAreaProvider>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default App;
