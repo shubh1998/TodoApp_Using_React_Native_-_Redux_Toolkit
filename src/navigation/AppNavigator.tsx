@@ -5,8 +5,19 @@ import {View, StyleSheet, Alert, ToastAndroid} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { HomeScreen } from '../screens/Home/HomeScreen';
 import { AddListScreen } from '../screens/AddList/AddListScreen';
+import { Colors } from '../utils/constants';
 
 const TasksStackNavigator = createStackNavigator();
+
+const defaultStyles = {
+    headerStyle: {
+        backgroundColor: Colors.primary
+    },
+    headerTintColor: Colors.white,
+    headerTitleStyle: {
+        fontFamily: "Eina02-Regular"
+    }
+}
 
 const TaskNavigator = () => {
   return (
@@ -14,12 +25,12 @@ const TaskNavigator = () => {
       <TasksStackNavigator.Screen
         name="Home"
         component={HomeScreen}
-        options={{title: 'Your lists', headerTitleAlign: 'center'}}
+        options={{...defaultStyles, title: 'Your lists', headerTitleAlign: 'center'}}
       />
       <TasksStackNavigator.Screen
         name="NewList"
         component={AddListScreen}
-        options={{title: 'Add new list'}}
+        options={{...defaultStyles, title: 'Add new list'}}
       />
     </TasksStackNavigator.Navigator>
   );
