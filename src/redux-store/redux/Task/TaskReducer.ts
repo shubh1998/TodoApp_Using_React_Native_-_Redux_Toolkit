@@ -9,19 +9,27 @@ const defaultState: defaultState = {
   taskList: [
     {
       id: Math.random(),
+      listId: 1,
       taskNote: 'Todo Task-1',
+      completed: true
     },
     {
       id: Math.random(),
+      listId: 2,
       taskNote: 'Todo Task-2',
+      completed: false
     },
     {
       id: Math.random(),
+      listId: 1,
       taskNote: 'Todo Task-3',
+      completed: false
     },
     {
       id: Math.random(),
+      listId: 2,
       taskNote: 'Todo Task-4',
+      completed: true
     },
   ],
 };
