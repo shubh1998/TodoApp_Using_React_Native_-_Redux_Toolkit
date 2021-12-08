@@ -11,7 +11,7 @@ export const HomeScreen = ({
 }) => {
   return (
     <View style={styles.container}>
-      <List />
+      <List navigation={navigation} />
       <CustomButton
         text="Add new task"
         icon="add"
@@ -25,5 +25,5 @@ export const HomeScreen = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  }
+  },
 });
