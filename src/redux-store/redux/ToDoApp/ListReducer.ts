@@ -1,6 +1,39 @@
 import {createSlice} from '@reduxjs/toolkit';
 const defaultState = {
-  list: [],
+  list: [
+    {
+      id: Math.random(),
+      note: 'Hi, This is the first note',
+    },
+    {
+      id: Math.random(),
+      note: 'Hi, This is the first note',
+    },
+    {
+      id: Math.random(),
+      note: 'Hi, This is the first note',
+    },
+    {
+      id: Math.random(),
+      note: 'Hi, This is the first note',
+    },
+    {
+      id: Math.random(),
+      note: 'Hi, This is the first note',
+    },
+    {
+      id: Math.random(),
+      note: 'Hi, This is the first note',
+    },
+    {
+      id: Math.random(),
+      note: 'Hi, This is the first note',
+    },
+    {
+      id: Math.random(),
+      note: 'Hi, This is the first note',
+    }
+  ],
   activeListId: null,
 };
 
