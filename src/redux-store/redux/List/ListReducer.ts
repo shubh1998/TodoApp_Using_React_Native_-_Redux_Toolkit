@@ -9,19 +9,19 @@ interface defaultState {
 const defaultState: defaultState = {
   list: [
     {
-      id: Math.random(),
+      id: 1,
       note: 'Todo List-1',
     },
     {
-      id: Math.random(),
+      id: 2,
       note: 'Todo List-2',
     },
     {
-      id: Math.random(),
+      id: 3,
       note: 'Todo List-3',
     },
     {
-      id: Math.random(),
+      id: 4,
       note: 'Todo List-4',
     },
   ],
