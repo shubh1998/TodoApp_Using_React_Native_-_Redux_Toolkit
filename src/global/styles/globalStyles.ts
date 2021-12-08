@@ -5,6 +5,7 @@ export const globalStyles = {
     marginTop: 20,
   },
   noData: {
+    textAlign: "center",
     fontSize: 18,
     fontFamily: 'Eina02-Regular',
   },
