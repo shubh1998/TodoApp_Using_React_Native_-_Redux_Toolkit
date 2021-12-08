@@ -5,7 +5,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { useDispatch, useSelector } from 'react-redux';
 import { CustomButton } from '../../components/Button/Button';
 import { globalStyles } from '../../global/styles/globalStyles';
-import { AddNewList } from '../../redux-store/redux/ToDoApp/ListReducer';
+import { AddNewList } from '../../redux-store/redux/List/ListReducer';
 import { DefaultRootStoreType } from '../../utils/types/defaultRootStoreType';
 import { listType } from '../../utils/types/listType';
 

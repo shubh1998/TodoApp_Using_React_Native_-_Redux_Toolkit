@@ -8,7 +8,7 @@ import { TaskListScreen } from '../screens/Task/TaskList/TaskListScreen';
 import { Alert, ToastAndroid, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useDispatch } from 'react-redux';
-import { deleteList } from '../redux-store/redux/ToDoApp/ListReducer';
+import { deleteList } from '../redux-store/redux/List/ListReducer';
 
 
 const TasksStackNavigator = createStackNavigator();
