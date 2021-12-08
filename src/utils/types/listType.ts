@@ -1,4 +1,4 @@
 export type listType = {
-    id?: number | string,
+    id: number | string,
     note: string
 }
