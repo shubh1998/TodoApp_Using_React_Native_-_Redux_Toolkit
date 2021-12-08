@@ -1,5 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
-const defaultState = {
+import { listType } from '../../../utils/types/listType';
+
+interface defaultState {
+  list: Array<listType>,
+  activeListId: string
+}
+
+const defaultState: defaultState = {
   list: [
     {
       id: Math.random(),
@@ -18,17 +25,17 @@ const defaultState = {
       note: 'Todo List-4',
     },
   ],
-  activeListId: null,
+  activeListId: '',
 };
 
 const ListReducer = createSlice({
   name: 'ListReducer',
   initialState: defaultState,
   reducers: {
-    setList: (state, action) => {
+    AddNewList: (state, action) => {
       return {
         ...state,
-        list: action.payload,
+        list: [...state.list, action.payload],
       };
     },
     setActiveListId: (state, action) => {
@@ -40,6 +47,6 @@ const ListReducer = createSlice({
   },
 });
 
-export const {setList, setActiveListId} = ListReducer.actions;
+export const {AddNewList, setActiveListId} = ListReducer.actions;
 
 export default ListReducer.reducer;
