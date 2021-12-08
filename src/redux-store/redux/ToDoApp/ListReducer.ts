@@ -44,9 +44,15 @@ const ListReducer = createSlice({
         activeListId: action.payload,
       };
     },
+    deleteList: (state, action) =>{
+      return {
+        ...state,
+        list: state.list.filter(item => item.id !== action.payload)
+      }
+    }
   },
 });
 
-export const {AddNewList, setActiveListId} = ListReducer.actions;
+export const {AddNewList, setActiveListId, deleteList} = ListReducer.actions;
 
 export default ListReducer.reducer;
