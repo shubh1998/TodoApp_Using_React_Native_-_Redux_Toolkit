@@ -13,7 +13,7 @@ export const HomeScreen = ({
     <View style={styles.container}>
       <List navigation={navigation} />
       <CustomButton
-        text="Add new task"
+        text="Add new list"
         icon="add"
         iconColor="#fff"
         onPress={() => navigation.navigate('NewList')}
