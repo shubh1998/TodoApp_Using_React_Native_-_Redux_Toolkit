@@ -1,6 +1,8 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
+import {List} from '../../components/List/List';
+import {CustomButton} from '../../components/Button/Button';
 
 export const HomeScreen = ({
   navigation,
@@ -8,12 +10,20 @@ export const HomeScreen = ({
   navigation: StackScreenProps<any, any>['navigation'];
 }) => {
   return (
-    <View>
-      <Text>Home Screen</Text>
-      <Button
-        title={'Add List'}
+    <View style={styles.container}>
+      <List />
+      <CustomButton
+        text="Add new task"
+        icon="add"
+        iconColor="#fff"
         onPress={() => navigation.navigate('NewList')}
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }
+});
