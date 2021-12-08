@@ -27,7 +27,7 @@ export const List = ({
         <FlatList
           keyExtractor={(item: any) => item.id}
           data={lists}
-          renderItem={({item}: {item: any}) => {
+          renderItem={({item}: {item: listType}) => {
             return (
               <TouchableOpacity
                 style={globalStyles.listItem}
