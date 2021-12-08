@@ -23,7 +23,7 @@ export const globalStyles = {
     borderBottomWidth: 2,
     borderBottomColor: Colors.quaternary,
     borderStyle: 'solid',
-    fontFamily: 'Poppins-Light',
+    fontFamily: 'Eina02-Regular',
     fontSize: 20,
     lineHeight: 28,
     marginBottom: 30,

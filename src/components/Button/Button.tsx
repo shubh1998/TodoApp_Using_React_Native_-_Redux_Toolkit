@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    fontFamily: 'Poppins-Light',
+    fontFamily: 'Eina02-Regular',
     color: '#fff',
   },
   icon: {
