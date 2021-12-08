@@ -1,6 +1,8 @@
+import { listType } from "./listType";
+
 export type DefaultRootStoreType = {
     ListReducer: {
-        list: Array<Object>,
+        list: Array<listType>,
         activeListId: string
     }
 }
