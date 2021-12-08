@@ -3,36 +3,20 @@ const defaultState = {
   list: [
     {
       id: Math.random(),
-      note: 'Hi, This is the first note',
+      note: 'Todo List-1',
     },
     {
       id: Math.random(),
-      note: 'Hi, This is the first note',
+      note: 'Todo List-2',
     },
     {
       id: Math.random(),
-      note: 'Hi, This is the first note',
+      note: 'Todo List-3',
     },
     {
       id: Math.random(),
-      note: 'Hi, This is the first note',
+      note: 'Todo List-4',
     },
-    {
-      id: Math.random(),
-      note: 'Hi, This is the first note',
-    },
-    {
-      id: Math.random(),
-      note: 'Hi, This is the first note',
-    },
-    {
-      id: Math.random(),
-      note: 'Hi, This is the first note',
-    },
-    {
-      id: Math.random(),
-      note: 'Hi, This is the first note',
-    }
   ],
   activeListId: null,
 };
