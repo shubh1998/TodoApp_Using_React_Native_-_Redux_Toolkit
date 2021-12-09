@@ -41,7 +41,7 @@ const TaskReducer = createSlice({
     AddNewTask: (state, action) => {
       return {
         ...state,
-        taskTask: [...state.taskList, action.payload],
+        taskList: [...state.taskList, action.payload],
       };
     },
     updateTask: (state, action) => {
