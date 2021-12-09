@@ -13,7 +13,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {CustomButton} from '../../../components/Button/Button';
 import {globalStyles} from '../../../global/styles/globalStyles';
 import {AddNewTask} from '../../../redux-store/redux/Task/TaskReducer';
-import { Colors } from '../../../utils/constants';
+import {Colors} from '../../../utils/constants';
 import {DefaultRootStoreType} from '../../../utils/types/defaultRootStoreType';
 import {taskType} from '../../../utils/types/taskType';
 
@@ -27,19 +27,22 @@ export const AddTaskScreen = ({
   const tasks: Array<taskType> = useSelector(
     (state: DefaultRootStoreType) => state.TaskReducer.taskList,
   );
+  const currentActiveListId = useSelector(
+    (state: DefaultRootStoreType) => state.ListReducer.activeListId,
+  );
 
   const submitHandler = () => {
     if (newTask.trim() === '') {
       return Alert.alert('Validation', 'Task description is required!');
     }
     const alreadyExist = tasks.find(
-      (l: taskType) =>
-        l.taskNote.toLowerCase() === newTask.trim().toLowerCase(),
+      (t: taskType) =>
+        t.taskNote.toLowerCase() === newTask.trim().toLowerCase() &&
+        t.listId === currentActiveListId,
     );
     if (alreadyExist) {
-      return Alert.alert('Validation', 'List with this name already exist!');
+      return Alert.alert('Validation', 'Task already exist in this list!');
     }
-
     const newListObject: taskType = {
       id: Math.random(),
       completed: false,
@@ -49,7 +52,8 @@ export const AddTaskScreen = ({
 
     dispatch(AddNewTask(newListObject));
     ToastAndroid.show(`"${newTask}" task created!`, ToastAndroid.LONG);
-    navigation.navigate('Home');
+    navigation.navigate('TaskList');
+    Keyboard.dismiss();
   };
 
   return (
@@ -59,10 +63,14 @@ export const AddTaskScreen = ({
           style={globalStyles.input}
           value={newTask}
           onChangeText={val => setNewTask(val)}
-          placeholder="List name"
+          placeholder="Add New Task"
           placeholderTextColor={Colors.tertiary}
         />
-        <CustomButton text="Submit" onPress={submitHandler} style={{backgroundColor: Colors.danger, borderRadius: 50}}/>
+        <CustomButton
+          text="Submit"
+          onPress={submitHandler}
+          style={{backgroundColor: Colors.danger, borderRadius: 50}}
+        />
       </View>
     </TouchableWithoutFeedback>
   );
