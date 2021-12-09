@@ -59,7 +59,21 @@ To fix `linting` in project
 yarn lint --fix
 ```
 
+To generate apk file for android
+```
+cd android && ./gradlew assembleRelease
+```
+
+To generate aab build file to upload app on Google Play Store
+```
+cd android && ./gradlew bundleRelease
+```
+
 
 ## Useful links
 
 - ReactNative Project using typescript (https://reactnative.dev/docs/typescript)
+- ReactNative Android App Icon and Name Update (https://www.youtube.com/watch?v=uw3SuJzX6CQ)
+- AppIcon Generator (https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html)
+- Generate APK file and Bundle file in React Native (https://www.youtube.com/watch?v=SXFnpo-6u1U, https://reactnative.dev/docs/signed-apk-android)
+- Gradle build fail issue solution (https://github.com/facebook/react-native/issues/30729)
