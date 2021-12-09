@@ -2,7 +2,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export const globalStyles = {
   loader: {
-    marginTop: 20,
+    marginTop: "50%",
   },
   noData: {
     textAlign: "center",
