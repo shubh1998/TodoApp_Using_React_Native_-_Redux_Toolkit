@@ -12,6 +12,7 @@ import { deleteList, setActiveListId } from '../redux-store/redux/List/ListReduc
 import { AddTaskScreen } from '../screens/Task/AddTask/AddTaskScreen';
 import { DefaultRootStoreType } from '../utils/types/defaultRootStoreType';
 import { taskType } from '../utils/types/taskType';
+import { ViewAndUpdateTaskScreen } from '../screens/Task/ViewAndUpdateTask/ViewAndUpdateTaskScreen';
 
 const TasksStackNavigator = createStackNavigator();
 
@@ -110,6 +111,12 @@ const TaskNavigator = () => {
         name="NewTask"
         component={AddTaskScreen}
         options={{...defaultStyles, title: 'Add new task in a list'}}
+      />
+
+      <TasksStackNavigator.Screen
+        name="ViewAndUpdateTask"
+        component={ViewAndUpdateTaskScreen}
+        options={{...defaultStyles, title: 'Task detail'}}
       />
     </TasksStackNavigator.Navigator>
   );
