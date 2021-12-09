@@ -1,20 +1,16 @@
 import {StackScreenProps} from '@react-navigation/stack';
 import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity, FlatList} from 'react-native';
-import {useSelector} from 'react-redux';
 import {globalStyles} from '../../global/styles/globalStyles';
-import {DefaultRootStoreType} from '../../utils/types/defaultRootStoreType';
 import {listType} from '../../utils/types/listType';
 
 export const List = ({
   navigation,
+  lists
 }: {
   navigation?: StackScreenProps<any, any>['navigation'];
+  lists: Array<listType>
 }) => {
-  const lists = useSelector(
-    (state: DefaultRootStoreType) => state.ListReducer.list,
-  );
-
   const onItemClick = (item: listType) => {
     if(navigation){
       navigation.navigate('TaskList', {name: item.note, id: item.id});
