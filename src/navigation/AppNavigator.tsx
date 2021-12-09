@@ -7,9 +7,11 @@ import { Colors } from '../utils/constants';
 import { TaskListScreen } from '../screens/Task/TaskList/TaskListScreen';
 import { Alert, ToastAndroid, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useDispatch } from 'react-redux';
-import { deleteList } from '../redux-store/redux/List/ListReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteList, setActiveListId } from '../redux-store/redux/List/ListReducer';
 import { AddTaskScreen } from '../screens/Task/AddTask/AddTaskScreen';
+import { DefaultRootStoreType } from '../utils/types/defaultRootStoreType';
+import { taskType } from '../utils/types/taskType';
 
 const TasksStackNavigator = createStackNavigator();
 
@@ -28,6 +30,8 @@ const defaultStyles = {
 
 const TaskNavigator = () => {
   const dispatch = useDispatch()
+  const tasksExist = useSelector((state: DefaultRootStoreType) => state.TaskReducer.taskList)
+  const currentActiveListId = useSelector((state: DefaultRootStoreType) => state.ListReducer.activeListId,);
 
   const deleteListConfirm = ({
     id, 
@@ -36,6 +40,13 @@ const TaskNavigator = () => {
     id: string | number, 
     navigation: StackScreenProps<any, any>['navigation']
   }) => {
+    const tasksOfList = tasksExist.filter((item: taskType) => item.listId===currentActiveListId)
+    if(tasksOfList.length){
+      return Alert.alert(
+        'Alert', 
+        "List can't be deleted, Please delete all tasks first !"
+      )
+    }
     dispatch(deleteList(id))
     navigation.goBack();
     ToastAndroid.show('List deleted successsfully!', ToastAndroid.LONG);
