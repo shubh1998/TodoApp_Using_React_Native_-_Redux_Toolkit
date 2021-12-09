@@ -30,7 +30,7 @@ export const AddListScreen = ({
     }
     
     const newListObject = {
-        id: Math.random(),
+        id: 'id' + (new Date()).getTime(),
         note: newList
     }
 
