@@ -1,6 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
 import { taskType } from '../../../utils/types/taskType';
-
 interface defaultState {
   taskList: Array<taskType>,
 }
@@ -8,25 +7,25 @@ interface defaultState {
 const defaultState: defaultState = {
   taskList: [
     {
-      id: Math.random(),
+      id: 5,
       listId: 1,
       taskNote: 'Todo Task-1',
       completed: true
     },
     {
-      id: Math.random(),
+      id: 6,
       listId: 2,
       taskNote: 'Todo Task-2',
       completed: false
     },
     {
-      id: Math.random(),
+      id: 7,
       listId: 1,
       taskNote: 'Todo Task-3',
       completed: false
     },
     {
-      id: Math.random(),
+      id: 8,
       listId: 2,
       taskNote: 'Todo Task-4',
       completed: true
