@@ -9,7 +9,7 @@ import { Alert, ToastAndroid, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useDispatch } from 'react-redux';
 import { deleteList } from '../redux-store/redux/List/ListReducer';
-
+import { AddTaskScreen } from '../screens/Task/AddTask/AddTaskScreen';
 
 const TasksStackNavigator = createStackNavigator();
 
@@ -93,6 +93,12 @@ const TaskNavigator = () => {
             )
           }
         )}
+      />
+
+      <TasksStackNavigator.Screen
+        name="NewTask"
+        component={AddTaskScreen}
+        options={{...defaultStyles, title: 'Add new task in a list'}}
       />
     </TasksStackNavigator.Navigator>
   );
