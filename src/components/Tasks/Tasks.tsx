@@ -29,7 +29,7 @@ export const Tasks = ({
 
   const taskClickHandler = (item: taskType) => {
     if (navigation) {
-      navigation.navigate('Task', {id: item.id});
+      navigation.navigate('ViewAndUpdateTask', {id: item.id});
     }
   };
 
@@ -46,7 +46,9 @@ export const Tasks = ({
                 !item.completed
                   ? globalStyles.listItem
                   : {...globalStyles.listItem, ...styles.itemCompleted}
-              }>
+              }
+              onPress={() => taskClickHandler(item)}  
+            >
               <View style={styles.textWrapper}>
                 <Text style={styles.itemText}>{item.taskNote}</Text>
                 {item.completed && (
