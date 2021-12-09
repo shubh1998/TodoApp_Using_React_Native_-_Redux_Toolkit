@@ -4,6 +4,7 @@ import { View, Text, TextInput, Switch, StyleSheet, TouchableWithoutFeedback, Ke
 import { useSelector, useDispatch } from 'react-redux';
 import { CustomButton } from '../../../components/Button/Button';
 import { globalStyles } from '../../../global/styles/globalStyles';
+import { deleteTask, updateTask } from '../../../redux-store/redux/Task/TaskReducer';
 import { Colors } from '../../../utils/constants';
 import { DefaultRootStoreType } from '../../../utils/types/defaultRootStoreType';
 import { taskType } from '../../../utils/types/taskType';
@@ -12,59 +13,75 @@ export const ViewAndUpdateTaskScreen = ({ route, navigation }: {
     route: any;
     navigation: StackScreenProps<any, any>['navigation'];
 }) => {
-  const [name, setName] = useState('');
+  const [taskDescription, setTaskDescription] = useState('');
   const [completed, setCompleted] = useState(false);
   const [task, setTask] = useState<taskType>();
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const tasks = useSelector((state: DefaultRootStoreType) => state.TaskReducer.taskList);
+  const taskId = route.params.id;
 
   useEffect(() => {
-    const taskFound: taskType = tasks.find((t: taskType) => t.id === route.params.id) as taskType;
+    setTimeout(()=>{
+        setLoading(false);
+    }, 1000)
+    const taskFound: taskType = tasks.find((t: taskType) => t.id === taskId) as taskType;
     if (taskFound) {
-      setName(taskFound.taskNote);
+      setTaskDescription(taskFound.taskNote);
       setCompleted(taskFound.completed);
       setTask(taskFound);
-      setLoading(false);
     }
-  }, [tasks, route.params.id]);
+  }, [tasks, taskId]);
 
   const updateTaskHandler = () => {
-    if (task?.taskNote === name && task.completed === completed) {
-      return Alert.alert('Nothing changed', 'Cannot update because nothing was changed!');
+    if(task){
+        if (task.taskNote === taskDescription && task.completed === completed) {
+            return Alert.alert('Nothing changed', 'Cannot update because nothing was changed!');
+        }
+        
+        if (taskDescription.trim() === '') {
+            return Alert.alert('Validation', 'Name is required!');
+        }
+        const alreadyExist = tasks.find((t: taskType) => t.taskNote.toLowerCase() === taskDescription.trim().toLowerCase());
+        if (alreadyExist) {
+            return Alert.alert('Validation', 'Task already exist in the list!');
+        }
+
+        const updatedTaskObject: taskType = {
+          ...task,
+          taskNote: taskDescription,
+          completed,
+        };
+        dispatch(updateTask(updatedTaskObject))
+        setTimeout(()=>{
+            navigation.goBack();
+        }, 500)
+        ToastAndroid.show('Task updated!', ToastAndroid.LONG);
+        Keyboard.dismiss()
     }
-
-    // const updatedTask = {
-    //   ...task,
-    //   name,
-    //   completed,
-    // };
-
-    // navigation.goBack();
-    // ToastAndroid.show('Task updated!', ToastAndroid.LONG);
   };
 
   const deleteTaskClickHandler = () => {
     Alert.alert(
       'Delete task',
       'Are you sure you want to delete this task?',
-      [{ text: 'Cancel' }, { text: 'Delete', onPress: () => deleteTaskHandler() }]
+      [{ text: 'Cancel' }, { text: 'Delete', onPress: () => {
+            dispatch(deleteTask(taskId))
+            setTimeout(()=>{
+                navigation.goBack();
+            }, 500)
+            ToastAndroid.show(`Task "${task?.taskNote} deleted!"`, ToastAndroid.LONG);
+      } }]
     );
   };
 
-  const deleteTaskHandler = () => {
-    navigation.goBack();
-        ToastAndroid.show(`Task "${task?.taskNote} deleted!"`, ToastAndroid.LONG);
-  };
-
-  if (loading) {
-    return <ActivityIndicator color={Colors.primary} size="large" style={globalStyles.loader} />;
-  }
 
   return (
+    loading 
+    ? <ActivityIndicator color={Colors.primary} size="large" style={globalStyles.loader} /> :
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
-        <TextInput value={name} onChangeText={(val) => setName(val)} placeholder="Task name" placeholderTextColor={Colors.quaternary} style={globalStyles.input} />
+        <TextInput value={taskDescription} onChangeText={(val) => setTaskDescription(val)} placeholder="Task name" placeholderTextColor={Colors.quaternary} style={globalStyles.input} />
         <View style={globalStyles.switchContainer}>
           <Switch
             value={completed}

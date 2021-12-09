@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 14,
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Eina02-Regular',
     flex: 1,
     paddingRight: 10,
   },
