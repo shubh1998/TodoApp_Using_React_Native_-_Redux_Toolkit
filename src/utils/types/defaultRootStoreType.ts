@@ -4,7 +4,7 @@ import { taskType } from "./taskType";
 export type DefaultRootStoreType = {
     ListReducer: {
         list: Array<listType>,
-        activeListId: string
+        activeListId: string | number
     },
     TaskReducer: {
         taskList: Array<taskType>,
