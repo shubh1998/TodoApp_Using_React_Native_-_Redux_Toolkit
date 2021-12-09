@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
-import { taskType } from '../../../utils/types/taskType';
+import {taskType} from '../../../utils/types/taskType';
 interface defaultState {
-  taskList: Array<taskType>,
+  taskList: Array<taskType>;
 }
 
 const defaultState: defaultState = {
@@ -10,25 +10,25 @@ const defaultState: defaultState = {
       id: 5,
       listId: 1,
       taskNote: 'Todo Task-1',
-      completed: true
+      completed: true,
     },
     {
       id: 6,
       listId: 2,
       taskNote: 'Todo Task-2',
-      completed: false
+      completed: false,
     },
     {
       id: 7,
       listId: 1,
       taskNote: 'Todo Task-3',
-      completed: false
+      completed: false,
     },
     {
       id: 8,
       listId: 2,
       taskNote: 'Todo Task-4',
-      completed: true
+      completed: true,
     },
   ],
 };
@@ -44,22 +44,19 @@ const TaskReducer = createSlice({
       };
     },
     updateTask: (state, action) => {
-        return {
-            ...state,
-            taskList: state.taskList.map(item => {
-                if(item.id === action.payload.id){
-                    item.taskNote = action.payload.taskNote
-                }
-                return item
-            })
-        }
+      return {
+        ...state,
+        taskList: state.taskList.map(item =>
+          item.id === action.payload.id ? action.payload : item,
+        ),
+      };
     },
     deleteTask: (state, action) => {
       return {
         ...state,
-        taskList: state.taskList.filter(item => item.id !== action.payload)
-      }
-    }
+        taskList: state.taskList.filter(item => item.id !== action.payload),
+      };
+    },
   },
 });
 
