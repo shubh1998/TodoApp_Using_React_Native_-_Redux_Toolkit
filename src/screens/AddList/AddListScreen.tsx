@@ -43,7 +43,7 @@ export const AddListScreen = ({
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         <TextInput style={globalStyles.input} value={newList} onChangeText={(val) => setNewList(val)} placeholder="List name" placeholderTextColor={Colors.tertiary} />
-        <CustomButton text="Submit" onPress={submitHandler} />
+        <CustomButton text="Submit" onPress={submitHandler} style={{borderRadius: 50}}/>
       </View>
     </TouchableWithoutFeedback>
   );

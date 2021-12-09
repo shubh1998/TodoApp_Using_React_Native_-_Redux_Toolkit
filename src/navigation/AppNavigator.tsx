@@ -22,7 +22,9 @@ const defaultStyles = {
     },
     headerTintColor: Colors.white,
     headerTitleStyle: {
-        fontFamily: "Eina02-Regular"
+        fontFamily: "Eina02-Regular",
+        fontWeight: "700",
+        fontSize: 21,
     },
     deleteIconStyle: {
       marginRight: 15
@@ -75,7 +77,7 @@ const TaskNavigator = () => {
       <TasksStackNavigator.Screen
         name="Home"
         component={HomeScreen}
-        options={{...defaultStyles, title: 'Your lists', headerTitleAlign: 'center'}}
+        options={{...defaultStyles, title: 'Todo lists', headerTitleAlign: 'center'}}
       />
 
       <TasksStackNavigator.Screen
