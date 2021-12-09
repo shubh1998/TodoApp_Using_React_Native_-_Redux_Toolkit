@@ -43,17 +43,19 @@ export const AddTaskScreen = ({
     if (alreadyExist) {
       return Alert.alert('Validation', 'Task already exist in this list!');
     }
-    const newListObject: taskType = {
-      id: Math.random(),
-      completed: false,
-      listId: 1,
-      taskNote: newTask,
-    };
-
-    dispatch(AddNewTask(newListObject));
-    ToastAndroid.show(`"${newTask}" task created!`, ToastAndroid.LONG);
-    navigation.navigate('TaskList');
-    Keyboard.dismiss();
+    if(currentActiveListId){
+      const newListObject: taskType = {
+        id: 'id' + (new Date()).getTime(),
+        completed: false,
+        listId: currentActiveListId,
+        taskNote: newTask,
+      };
+  
+      dispatch(AddNewTask(newListObject));
+      ToastAndroid.show(`"${newTask}" task created!`, ToastAndroid.LONG);
+      navigation.navigate('TaskList');
+      Keyboard.dismiss();
+    }
   };
 
   return (
