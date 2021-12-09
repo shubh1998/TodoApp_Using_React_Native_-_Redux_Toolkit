@@ -42,7 +42,7 @@ export const ViewAndUpdateTaskScreen = ({ route, navigation }: {
         if (taskDescription.trim() === '') {
             return Alert.alert('Validation', 'Name is required!');
         }
-        const alreadyExist = tasks.find((t: taskType) => t.taskNote.toLowerCase() === taskDescription.trim().toLowerCase());
+        const alreadyExist = tasks.find((t: taskType) => t.taskNote.toLowerCase() === taskDescription.trim().toLowerCase() && t.completed === completed);
         if (alreadyExist) {
             return Alert.alert('Validation', 'Task already exist in the list!');
         }
@@ -89,7 +89,7 @@ export const ViewAndUpdateTaskScreen = ({ route, navigation }: {
             thumbColor={completed ? Colors.primary : Colors.secondary}
             trackColor={{ false: Colors.tertiary, true: Colors.quaternary }}
           />
-          <Text style={globalStyles.switchText}>Complete task</Text>
+          <Text style={globalStyles.switchText}>{completed ? 'Complete task' : 'Incomplete task'}</Text>
         </View>
         <CustomButton text="Update task" onPress={updateTaskHandler} style={{...styles.spaceBottom, backgroundColor: Colors.primary, borderRadius: 50}}/>
         <CustomButton text="Delete task" onPress={deleteTaskClickHandler} style={{backgroundColor: Colors.danger, borderRadius: 50}}/>
